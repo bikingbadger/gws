@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "netlify-lambda serve src-functions",
-    "build": "netlify-lambda build src-functions"
+    "serve": "netlify-lambda serve src/functions",
+    "build": "netlify-lambda build src/functions"
   },
   "repository": {
     "type": "git",
