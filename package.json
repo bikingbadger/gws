@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "echo \"Systems all go\""
+    "serve": "netlify-lambda serve src-functions",
+    "build": "netlify-lambda build src-functions"
   },
   "repository": {
     "type": "git",
