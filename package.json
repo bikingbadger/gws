@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/bikingbadger/gws/issues"
   },
-  "homepage": "https://github.com/bikingbadger/gws#readme"
+  "homepage": "https://github.com/bikingbadger/gws#readme",
+  "devDependencies": {
+    "netlify-lambda": "^1.6.3"
+  }
 }
