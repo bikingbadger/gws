@@ -9,7 +9,8 @@
   "scripts": {
     "serve-functions": "netlify-lambda serve src/functions",
     "serve": "vue-cli-service serve",
-    "build": "netlify-lambda build src/functions & vue-cli-service build",
+    "prebuild": "netlify-lambda build src/functions", 
+    "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "main": "index.js",
