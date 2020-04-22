@@ -1,21 +1,19 @@
 <template>
   <div id="app">
-    <img alt="Komit logo" src="./assets/logo.png">
-    <Timeslot/>
+    <img alt="Komit logo" src="./assets/logo.png" />
+    <Timeslot />
   </div>
 </template>
 
 <script>
-import Timeslot from './components/Timeslot'
+import Timeslot from './components/Timeslot';
 
 export default {
   name: 'App',
   components: {
-    Timeslot
-  }
-}
+    Timeslot,
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

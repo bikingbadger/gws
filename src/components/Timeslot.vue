@@ -1,9 +1,40 @@
-<template> 
-    <h1>Timeslots</h1>
+<template>
+  <div>
+    <!-- <TimeslotList
+      :timeslots="timeslots"
+      @select-timeslot="selectTimeslot"
+    ></TimeslotList> -->
+    <TimeslotList
+    :timeslots="timeslots"
+    ></TimeslotList>
+  </div>
 </template>
 
 <script>
-export default {};
+import TimeslotList from './TimeslotList';
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      timeslots: [],
+      currentTimeslot: null,
+    };
+  },
+  components: {
+    TimeslotList,
+  },
+  mounted() {
+    axios.get('.netlify/functions/timeslot-read-all').then((response) => {
+      this.timeslots = response.data.map((timeslot) => timeslot.data);
+    });
+  },
+  methods: {
+    selectTimeslot(timeslot) {
+      this.currentTimeslot = timeslot;
+    },
+  },
+};
 </script>
 
 <style></style>

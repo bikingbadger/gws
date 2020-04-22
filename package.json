@@ -7,12 +7,14 @@
     "name": "Hilton Meyer"
   },
   "scripts": {
+    "serve-functions": "netlify-lambda serve src/functions",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "netlify-lambda build src/functions & vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "main": "index.js",
   "dependencies": {
+    "axios": "^0.19.2",
     "core-js": "^3.6.4",
     "dot-env": "0.0.1",
     "encoding": "^0.1.12",
