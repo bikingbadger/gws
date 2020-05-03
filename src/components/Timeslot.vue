@@ -1,6 +1,8 @@
 <template>
   <div>
-    <TimeslotCreate v-if="showModal" @close="showModal = false"></TimeslotCreate>
+    <TimeslotCreate v-if="showModal" @close="showModal = false">
+      
+    </TimeslotCreate>
     <button @click="createTimeslot">Add</button>
     <TimeslotList
     :timeslots="timeslots"

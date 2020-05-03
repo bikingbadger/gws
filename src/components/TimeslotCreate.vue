@@ -3,22 +3,46 @@
     <div class="modal-wrapper">
       <div class="modal-container">
         <div class="modal-header">
-          <slot name="header">
-            default header
-          </slot>
+          <h3 slot="header">Create timeslot</h3>
         </div>
 
         <div class="modal-body">
           <slot name="body">
-            default body
+            <label for="timeslot-date"
+              >Date
+              <input
+                type="date"
+                name="timeslot-date"
+                id="timeslot-date"/></label
+            ><br />
+            <label for="timeslot-customer"
+              >Customer
+              <input
+                type="text"
+                name="timeslot-customer"
+                id="timeslot-customer"/></label
+            ><br />
+            <label for="timeslot-hours"
+              >Hours
+              <input
+                type="number"
+                name="timeslot-hours"
+                id="timeslot-hours"/></label
+            ><br />
+            <label for="timeslot-description"
+              >Description
+              <input
+                type="text"
+                name="timeslot-description"
+                id="timeslot-description"/></label
+            ><br />
           </slot>
         </div>
 
         <div class="modal-footer">
           <slot name="footer">
-            default footer
             <button class="modal-default-button" @click="$emit('close')">
-              OK
+              Create
             </button>
           </slot>
         </div>
