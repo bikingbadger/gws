@@ -1,9 +1,6 @@
 <template>
   <div>
-    <!-- <TimeslotList
-      :timeslots="timeslots"
-      @select-timeslot="selectTimeslot"
-    ></TimeslotList> -->
+    <button type="submit">Add</button>
     <TimeslotList
     :timeslots="timeslots"
     ></TimeslotList>
