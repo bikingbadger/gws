@@ -9,7 +9,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit",
+    "test:unit": "vue-cli-service test:unit --watchAll",
     "lint": "vue-cli-service lint",
     "prebuild": "netlify-lambda build src/functions",
     "serve-functions": "netlify-lambda serve src/functions"
