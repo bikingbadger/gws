@@ -7,11 +7,12 @@
     "name": "Hilton Meyer"
   },
   "scripts": {
-    "serve-functions": "netlify-lambda serve src/functions",
     "serve": "vue-cli-service serve",
-    "prebuild": "netlify-lambda build src/functions", 
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "test:unit": "vue-cli-service test:unit --watchAll",
+    "lint": "vue-cli-service lint",
+    "prebuild": "netlify-lambda build src/functions",
+    "serve-functions": "netlify-lambda serve src/functions"
   },
   "main": "index.js",
   "dependencies": {
@@ -25,7 +26,9 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.3.0",
     "@vue/cli-plugin-eslint": "~4.3.0",
+    "@vue/cli-plugin-unit-jest": "^4.3.1",
     "@vue/cli-service": "~4.3.0",
+    "@vue/test-utils": "1.0.0-beta.31",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
@@ -44,7 +47,18 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {},
+    "overrides": [
+      {
+        "files": [
+          "**/__tests__/*.{j,t}s?(x)",
+          "**/tests/unit/**/*.spec.{j,t}s?(x)"
+        ],
+        "env": {
+          "jest": true
+        }
+      }
+    ]
   },
   "browserslist": [
     "> 1%",
