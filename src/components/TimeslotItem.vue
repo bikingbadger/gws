@@ -10,7 +10,7 @@
 <script>
 export default {
   props: {
-    date: { type: Date, required: true },
+    date: { type: String, required: true },
     hours: { type: Number, required: true },
     customer: {
       type: String,

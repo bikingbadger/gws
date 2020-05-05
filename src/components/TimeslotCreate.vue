@@ -1,0 +1,155 @@
+<template>
+  <div class="modal-mask">
+    <div class="modal-wrapper">
+      <div class="modal-container">
+        <div class="modal-header">
+          <h3 slot="header">Create timeslot</h3>
+        </div>
+
+        <div class="modal-body">
+          <slot name="body">
+            <label for="timeslot-date"
+              >Date
+              <input
+                type="date"
+                name="timeslot-date"
+                id="timeslot-date"
+                v-model="date"/></label
+            ><br />
+            <label for="timeslot-customer"
+              >Customer
+              <input
+                type="text"
+                name="timeslot-customer"
+                id="timeslot-customer"
+                v-model="customer"/></label
+            ><br />
+            <label for="timeslot-hours"
+              >Hours
+              <input
+                type="number"
+                name="timeslot-hours"
+                id="timeslot-hours"
+                v-model.number="hours"/></label
+            ><br />
+            <label for="timeslot-description"
+              >Description
+              <input
+                type="text"
+                name="timeslot-description"
+                id="timeslot-description"
+                v-model="description"/></label
+            ><br />
+          </slot>
+        </div>
+
+        <div class="modal-footer">
+          <slot name="footer">
+            <button class="modal-default-button" @click="$emit('close')">
+              Cancel
+            </button>
+            <button class="modal-default-button" @click="createTimeslot">
+              Create
+            </button>
+          </slot>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import axios from 'axios';
+export default {
+  data() {
+    return {
+      date: new Date(),
+      hours: 0,
+      customer: null,
+      description: null,
+    };
+  },
+  methods: {
+    createTimeslot() {
+      const data = {
+        date: this.date,
+        hours: this.hours,
+        customer: this.customer,
+        description: this.description,
+      };
+      axios
+        .post('.netlify/functions/timeslot-create', data)
+        .then((response) => {
+          this.timeslots = response.data.map((timeslot) => timeslot.data);
+        });
+      this.$emit('close');
+    },
+  },
+};
+</script>
+
+<style>
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: table;
+  transition: opacity 0.3s ease;
+}
+
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.modal-container {
+  width: 300px;
+  margin: 0px auto;
+  padding: 20px 30px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+  transition: all 0.3s ease;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.modal-header h3 {
+  margin-top: 0;
+  color: #42b983;
+}
+
+.modal-body {
+  margin: 20px 0;
+}
+
+.modal-default-button {
+  float: right;
+}
+
+/*
+ * The following styles are auto-applied to elements with
+ * transition="modal" when their visibility is toggled
+ * by Vue.js.
+ *
+ * You can easily play with the modal transition by editing
+ * these styles.
+ */
+
+.modal-enter {
+  opacity: 0;
+}
+
+.modal-leave-active {
+  opacity: 0;
+}
+
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+</style>

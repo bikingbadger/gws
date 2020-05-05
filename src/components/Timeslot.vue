@@ -1,9 +1,9 @@
 <template>
   <div>
-    <!-- <TimeslotList
-      :timeslots="timeslots"
-      @select-timeslot="selectTimeslot"
-    ></TimeslotList> -->
+    <TimeslotCreate v-if="showModal" @close="showModal = false">
+      
+    </TimeslotCreate>
+    <button @click="addTimeslot">Add</button>
     <TimeslotList
     :timeslots="timeslots"
     ></TimeslotList>
@@ -12,17 +12,20 @@
 
 <script>
 import TimeslotList from './TimeslotList';
+import TimeslotCreate from './TimeslotCreate';
 import axios from 'axios';
 
 export default {
   data() {
     return {
+      showModal: false,
       timeslots: [],
       currentTimeslot: null,
     };
   },
   components: {
     TimeslotList,
+    TimeslotCreate,
   },
   mounted() {
     axios.get('.netlify/functions/timeslot-read-all').then((response) => {
@@ -33,6 +36,10 @@ export default {
     selectTimeslot(timeslot) {
       this.currentTimeslot = timeslot;
     },
+    addTimeslot() {
+      console.log("Create");
+      this.showModal = true;
+    }
   },
 };
 </script>
