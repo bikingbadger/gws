@@ -13,28 +13,32 @@
               <input
                 type="date"
                 name="timeslot-date"
-                id="timeslot-date"/></label
+                id="timeslot-date"
+                v-model="date"/></label
             ><br />
             <label for="timeslot-customer"
               >Customer
               <input
                 type="text"
                 name="timeslot-customer"
-                id="timeslot-customer"/></label
+                id="timeslot-customer"
+                v-model="customer"/></label
             ><br />
             <label for="timeslot-hours"
               >Hours
               <input
                 type="number"
                 name="timeslot-hours"
-                id="timeslot-hours"/></label
+                id="timeslot-hours"
+                v-model="hours"/></label
             ><br />
             <label for="timeslot-description"
               >Description
               <input
                 type="text"
                 name="timeslot-description"
-                id="timeslot-description"/></label
+                id="timeslot-description"
+                v-model="description"/></label
             ><br />
           </slot>
         </div>
@@ -42,6 +46,9 @@
         <div class="modal-footer">
           <slot name="footer">
             <button class="modal-default-button" @click="$emit('close')">
+              Cancel
+            </button>
+            <button class="modal-default-button" @click="createTimeslot">
               Create
             </button>
           </slot>
@@ -52,7 +59,33 @@
 </template>
 
 <script>
-export default {};
+import axios from 'axios';
+export default {
+  data() {
+    return {
+      date: new Date(),
+      hours: 0,
+      customer: null,
+      description: null,
+    };
+  },
+  methods: {
+    createTimeslot() {
+      const data = {
+        date: this.date,
+        hours: this.hours,
+        customer: this.customer,
+        description: this.description,
+      };
+      axios
+        .post('.netlify/functions/timeslot-create', data)
+        .then((response) => {
+          this.timeslots = response.data.map((timeslot) => timeslot.data);
+        });
+      this.$emit('close');
+    },
+  },
+};
 </script>
 
 <style>

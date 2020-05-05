@@ -3,7 +3,7 @@
     <TimeslotCreate v-if="showModal" @close="showModal = false">
       
     </TimeslotCreate>
-    <button @click="createTimeslot">Add</button>
+    <button @click="addTimeslot">Add</button>
     <TimeslotList
     :timeslots="timeslots"
     ></TimeslotList>
@@ -36,7 +36,7 @@ export default {
     selectTimeslot(timeslot) {
       this.currentTimeslot = timeslot;
     },
-    createTimeslot() {
+    addTimeslot() {
       console.log("Create");
       this.showModal = true;
     }
