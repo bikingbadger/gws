@@ -30,7 +30,7 @@
                 type="number"
                 name="timeslot-hours"
                 id="timeslot-hours"
-                v-model="hours"/></label
+                v-model.number="hours"/></label
             ><br />
             <label for="timeslot-description"
               >Description
